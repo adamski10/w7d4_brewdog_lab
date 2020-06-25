@@ -1,11 +1,14 @@
 <template>
   <div id="app">
+    <favouriteslist />
     <beer v-for="(beer, key) in beers" :beer="beer"/>
   </div>
+  
 </template>
 
 <script>
 import beer from './components/Beer.vue';
+import favouriteslist from './components/FavouritesList.vue';
 
 export default {
   name: 'App',
@@ -20,7 +23,8 @@ export default {
     .then(beers => this.beers = beers)
   },
   components: {
-    beer
+    "beer": beer,
+    "favouriteslist": favouriteslist
   }
 }
 </script>
