@@ -2,6 +2,7 @@
   <div class="beer">
     <img :src="beer.image_url" />
     <label class="favorite" for="checkbox">Mark as favourite</label>
+    <h2>{{ beer.name }}</h2>
     <input v-on:change="favourite" class="favorite" type="checkbox"></input>
       <i>{{ beer.tagline }}</i>
       <p>{{ beer.description }}</p>
@@ -17,7 +18,7 @@ export default {
   props: [ 'beer' ],
   methods: {
     favourite(event) {
-      console.log(`The checkbox was clicked ${event.target.checked}`);
+      eventBus.$emit('beer', this.beer);
     }
   }
 }

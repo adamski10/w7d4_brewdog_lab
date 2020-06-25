@@ -1,17 +1,25 @@
 <template>
   <ul>
-      <li>beer 1</li>
-      <li>beer 2</li>
-      <li>beer 3</li>
-      </ul>
+    <li v-for="(fave, key) in favoriteBeers">{{ fave.name }}</li>
+  </ul>
 </template>
 
 <script>
+import { eventBus } from '../main';
 export default {
-  name: 'favouriteslist'
-}
+  name: "favouriteslist",
+  data() {
+    return {
+      favoriteBeers: []
+    };
+  },
+  mounted() {
+    eventBus.$on('beer', (beer) => {
+      this.favoriteBeers.push(beer);
+    })
+  }
+};
 </script>
 
 <style>
-
 </style>

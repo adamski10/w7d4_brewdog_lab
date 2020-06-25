@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <favouriteslist />
+    <div id="favlist">
+      <favouriteslist />
+    </div>
     <beer v-for="(beer, key) in beers" :beer="beer"/>
   </div>
   
@@ -15,7 +17,8 @@ export default {
   name: 'App',
   data(){
     return {
-      beers: []
+      beers: [],
+      favouriteBeers: []
     }
   },
   mounted(){
