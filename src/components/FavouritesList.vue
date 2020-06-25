@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2>Favorites</h2>
+    <h2>Favourites</h2>
     <ul>
-      <li v-for="(fave, key) in favoriteBeers">{{ fave.name }}</li>
+      <li v-for="(fave, key) in favouriteBeers">{{ fave.name }}</li>
     </ul>
   </div>
 </template>
@@ -13,12 +13,14 @@ export default {
   name: "favouriteslist",
   data() {
     return {
-      favoriteBeers: []
+      favouriteBeers: []
     };
   },
   mounted() {
     eventBus.$on("beer", beer => {
-      this.favoriteBeers.push(beer);
+      if(!this.favouriteBeers.includes(beer)) {
+        this.favouriteBeers.push(beer);
+      }
     });
   }
 };
