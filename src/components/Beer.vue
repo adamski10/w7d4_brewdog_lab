@@ -2,15 +2,17 @@
   <div class="beer">
     <img :src="beer.image_url" />
     <label class="favorite" for="checkbox">Mark as favourite</label>
-    <h2>{{ beer.name }}</h2>
     <input v-on:change="favourite" class="favorite" type="checkbox"></input>
+    <h2>{{ beer.name }}</h2>
       <i>{{ beer.tagline }}</i>
       <p>{{ beer.description }}</p>
       <div class="clearfix"></div>
+      <extrainfo :beer="beer"/>
     </div>
 </template>
 
 <script>
+import extrainfo from './ExtraInfo.vue';
 import { eventBus } from '../main.js';
 
 export default {
@@ -19,16 +21,19 @@ export default {
   methods: {
     favourite(event) {
       eventBus.$emit('beer', this.beer);
+    },
+    extraInfo() {
+      console.log('extra')
     }
-  }
+  },
+  components: {
+    'extrainfo': extrainfo
+    }
 }
 </script>
 
 <style>
-.beer {
-  border: 1px solid black;
-}
-
+.beer {}
 
 .favorite {
   float: right;
