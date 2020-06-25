@@ -1,17 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <beer v-for="(beer, key) in beers" :beer="beer"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import beer from './components/Beer.vue';
 
 export default {
   name: 'App',
+  data(){
+    return {
+      beers: []
+    }
+  },
+  mounted(){
+    fetch('https://api.punkapi.com/v2/beers')
+    .then(res => res.json())
+    .then(beers => this.beers = beers)
+  },
   components: {
-    HelloWorld
+    beer
   }
 }
 </script>
