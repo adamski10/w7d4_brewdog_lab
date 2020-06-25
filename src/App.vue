@@ -9,6 +9,7 @@
 <script>
 import beer from './components/Beer.vue';
 import favouriteslist from './components/FavouritesList.vue';
+import { eventBus } from './main.js'
 
 export default {
   name: 'App',
